@@ -98,7 +98,11 @@ def example_images(target_directory, type):
         return('Images copied to your target directory.')
 
 def get_feature_counts(data_frame, feature):
-    res = data_frame[feature].value_counts()
+    counts = data_frame[feature].value_counts()
+    all_features = list(data_frame[feature].value_counts().index.values)
+    res = {}
+    for index, ff in enumerate(all_features):
+        res[ff] = counts[index]
     return(res)
 
 def encode_and_bind(original_dataframe, feature_to_encode):
