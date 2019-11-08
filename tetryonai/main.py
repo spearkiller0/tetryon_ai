@@ -22,6 +22,7 @@ THE SOFTWARE.
 
 import os
 import sys
+import pkg_resources
 import re
 import json
 import glob
@@ -31,6 +32,8 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import cv2
+
+DATA_PATH = pkg_resources.resource_filename('tetryonai', 'data/')
 
 
 def check_dependencies(lib_list):
@@ -51,7 +54,7 @@ def csv_to_dataframe(path_to_csv):
 def datasets(data):
     if(data == 'iris'):
         res = csv_to_dataframe(**{
-            "path_to_csv" : "data/iris.csv"
+            "path_to_csv": DATA_PATH + "iris.csv"
         })
     return(res)
 
