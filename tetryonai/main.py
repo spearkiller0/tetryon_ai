@@ -56,28 +56,24 @@ def csv_to_dataframe(path_to_csv):
 
 def example_datasets(target_directory, type):
     if (type == 'iris'):
-        if (os.path.exists(target_directory)):
-            copy_files(**{
-                "file_paths": [DATA_PATH + 'iris.csv'],
-                "target_directory": target_directory
-            })
-        else:
-            directory(**{
-                "choice": "make",
-                "directory_path": target_directory
-            })
-            copy_files(**{
-                "file_paths": [DATA_PATH + 'iris.csv'],
-                "target_directory": target_directory
-            })
-        return ('Dataset copied to your target directory.')
-
-
-    if(data == 'iris'):
-        res = csv_to_dataframe(**{
-            "path_to_csv": DATA_PATH + "iris.csv"
+        use_data = 'iris.csv'
+    if (type == 'boston'):
+        use_data = 'boston_housing.csv'
+    if (os.path.exists(target_directory)):
+        copy_files(**{
+            "file_paths": [DATA_PATH + use_data],
+            "target_directory": target_directory
         })
-    return(res)
+    else:
+        directory(**{
+            "choice": "make",
+            "directory_path": target_directory
+        })
+        copy_files(**{
+            "file_paths": [DATA_PATH + use_data],
+            "target_directory": target_directory
+        })
+    return ('Dataset copied to your target directory.')
 
 def example_images(target_directory, type):
     if(type == 'defects'):
