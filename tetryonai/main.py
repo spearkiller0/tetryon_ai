@@ -204,7 +204,7 @@ def train_test_split(original_dataframe, target_feature, split_percentage):
         "original_dataframe": original_dataframe,
         "features_to_remove": [target_feature]
     })
-    df_headers = list(data_frame.columns)
+    df_headers = list(original_dataframe.columns)
     df_headers.remove(target_feature)
     y = remove_features(**{
         "original_dataframe": original_dataframe,
