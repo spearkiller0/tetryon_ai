@@ -200,14 +200,42 @@ def zip_files_in_directory(directory, zip_filename):
 ## model training
 
 def split_data(original_dataframe, target_feature, split_fraction):
+    datasets = {}
     train = original_dataframe.sample(frac=split_fraction, random_state=42)
     test = original_dataframe.drop(train.index)
-    datasets = {}
+    train_X = remove_features(**{
+        "original_dataframe": train,
+        "features_to_remove": [target_feature]
+    })
+    headers_tr = list(train.columns)
+    headers_tr.remove(target_feature)
+    train_y = remove_features(**{
+        "original_dataframe": train,
+        "features_to_remove": [headers_tr]
+    })
+    test_X = remove_features(**{
+        "original_dataframe": test,
+        "features_to_remove": [target_feature]
+    })
+    headers_te = list(test.columns)
+    headers_te.remove(target_feature)
+    test_y = remove_features(**{
+        "original_dataframe": test,
+        "features_to_remove": [headers_te]
+    })
     datasets['train'] = train
     datasets['test'] = test
+    datasets['train_X'] = train_X
+    datasets['train_y'] = train_y
+    datasets['test_X'] = test_X
+    datasets['test_y'] = test_y
     return(datasets)
 
-def linear_regression(train_set, test_set, hyperparameters):
+def linear_regression(train_set, test_set, target_feature):
+    X_train = train_set[]
+    y_train =
+    X_test =
+    y_test =
     reg = linear_model.LinearRegression()
     reg.fit(data)
     model = LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
