@@ -33,8 +33,9 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import cv2
-from sklearn import linear_model
 from sklearn.model_selection import train_test_split
+from sklearn import linear_model
+from sklearn.metrics import mean_squared_error, r2_score
 
 DATA_PATH = pkg_resources.resource_filename('tetryonai', 'data/')
 IMG_PATH = pkg_resources.resource_filename('tetryonai', 'img/')
