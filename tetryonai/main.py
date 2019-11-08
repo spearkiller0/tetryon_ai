@@ -247,7 +247,7 @@ def linear_regression(train_X, train_y, test_X, test_y):
     return(model_results)
 
 
-def logistic_regression(train_X, train_y, test_X, test_y):
+#def logistic_regression(train_X, train_y, test_X, test_y):
 
 
 
