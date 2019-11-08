@@ -34,6 +34,7 @@ import requests
 from bs4 import BeautifulSoup
 import cv2
 from sklearn import linear_model
+from sklearn.model_selection import train_test_split
 
 DATA_PATH = pkg_resources.resource_filename('tetryonai', 'data/')
 IMG_PATH = pkg_resources.resource_filename('tetryonai', 'img/')
@@ -196,9 +197,29 @@ def zip_files_in_directory(directory, zip_filename):
 
 # MACHINE LEARNING
 
-## MODEL TRAINING
+## model training
 
-def linear_regression(data):
+def train_test_split(data_frame, target_feature, split_percentage):
+    X = remove_features(**{
+        "original_dataframe": data_frame,
+        "features_to_remove": [target_feature]
+    })
+    df_headers = list(data_frame.columns)
+    df_headers.remove(target_feature)
+    y = remove_features(**{
+        "original_dataframe": data_frame,
+        "features_to_remove": df_headers
+    })
+    use_test_size = 1 - split_percentage
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = use_test_size, random_state = 42)
+    datasets = {}
+    datasets['x_train'] = X_train
+    datasets['y_train'] = y_train
+    datasets['x_test'] = X_test
+    datasets['y_test'] = y_test
+    return(datasets)
+
+def linear_regression(train_set, test_set, hyperparameters):
     reg = linear_model.LinearRegression()
     reg.fit(data)
     model = LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
