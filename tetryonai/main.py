@@ -59,6 +59,7 @@ def images(directory_name, image_name, type):
     if(type == 'defect'):
         # create directory is none exists
         # copy example image  to new/existing directory
+        return(True)
 
 def encode_and_bind(original_dataframe, feature_to_encode):
     dummies = pd.get_dummies(original_dataframe[[feature_to_encode]])
