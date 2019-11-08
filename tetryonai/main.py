@@ -34,7 +34,7 @@ import requests
 from bs4 import BeautifulSoup
 import cv2
 from sklearn import linear_model
-from sklearn.model_selection import train_test_split
+from sklearn.cross_validation import train_test_split
 
 DATA_PATH = pkg_resources.resource_filename('tetryonai', 'data/')
 IMG_PATH = pkg_resources.resource_filename('tetryonai', 'img/')
@@ -199,7 +199,7 @@ def zip_files_in_directory(directory, zip_filename):
 
 ## model training
 
-def train_test_split(original_dataframe, target_feature, split_percentage):
+def split_data(original_dataframe, target_feature, split_percentage):
     X = remove_features(**{
         "original_dataframe": original_dataframe,
         "features_to_remove": [target_feature]
