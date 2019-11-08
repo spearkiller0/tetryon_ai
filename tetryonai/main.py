@@ -36,6 +36,7 @@ import cv2
 from sklearn.model_selection import train_test_split
 from sklearn import linear_model
 from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.linear_model import LogisticRegression
 
 DATA_PATH = pkg_resources.resource_filename('tetryonai', 'data/')
 IMG_PATH = pkg_resources.resource_filename('tetryonai', 'img/')
@@ -60,6 +61,8 @@ def example_datasets(target_directory, type):
         use_data = 'iris.csv'
     if (type == 'boston'):
         use_data = 'boston_housing.csv'
+    if (type == 'people'):
+        use_data = 'people.csv'
     if (os.path.exists(target_directory)):
         copy_files(**{
             "file_paths": [DATA_PATH + use_data],
@@ -93,6 +96,10 @@ def example_images(target_directory, type):
                 "target_directory": target_directory
             })
         return('Images copied to your target directory.')
+
+def get_feature_counts(data_frame, feature):
+    res = data_frame[feature].value_counts()
+    return(res)
 
 def encode_and_bind(original_dataframe, feature_to_encode):
     dummies = pd.get_dummies(original_dataframe[[feature_to_encode]])
@@ -235,10 +242,12 @@ def linear_regression(train_X, train_y, test_X, test_y):
     predictions = regr.predict(test_X)
     model_results['coefficients'] = regr.coef_
     model_results['mean_squared_error'] = mean_squared_error(test_y, predictions)
-    model_results['variance score'] = r2_score(test_y, predictions)
+    model_results['variance_score'] = r2_score(test_y, predictions)
     model_results['predictions'] = predictions
     return(model_results)
 
+
+def logistic_regression(train_X, train_y, test_X, test_y):
 
 
 
