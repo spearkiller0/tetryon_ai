@@ -231,7 +231,7 @@ def split_data(original_dataframe, target_feature, split_fraction):
     datasets['test_y'] = test_y
     return(datasets)
 
-def linear_regression(train_X, train_y, test_X):
+def linear_regression(train_X, train_y, test_X, test_y):
     regr = linear_model.LinearRegression()
     regr.fit(train_X, train_y)
     prediction = regr.predict(test_X)
