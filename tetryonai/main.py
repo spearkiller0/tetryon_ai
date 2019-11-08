@@ -199,14 +199,12 @@ def zip_files_in_directory(directory, zip_filename):
 
 ## model training
 
-def split_data(original_dataframe, target_feature, split_percentage):
-    use_test_size = 1 - split_percentage
-    X_train, X_test, y_train, y_test = train_test_split(original_dataframe, test_size=use_test_size)
+def split_data(original_dataframe, target_feature, split_fraction):
+    train = original_dataframe.sample(frac=split_fraction, random_state=42)
+    test = original_dataframe.drop(train.index)
     datasets = {}
-    datasets['x_train'] = X_train
-    datasets['y_train'] = y_train
-    datasets['x_test'] = X_test
-    datasets['y_test'] = y_test
+    datasets['train'] = train
+    datasets['test'] = test
     return(datasets)
 
 def linear_regression(train_set, test_set, hyperparameters):
