@@ -26,6 +26,13 @@ def csv_to_dataframe(path_to_csv):
     res = pd.read_csv(path_to_csv)
     return(res)
 
+def datasets(data):
+    if(data == 'iris'):
+        res = csv_to_dataframe(**{
+            "path_to_csv" : "tetryonai/data/iris.csv"
+        })
+    return(res)
+
 def encode_and_bind(original_dataframe, feature_to_encode):
     dummies = pd.get_dummies(original_dataframe[[feature_to_encode]])
     res = pd.concat([original_dataframe, dummies], axis=1)
