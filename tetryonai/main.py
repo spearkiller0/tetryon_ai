@@ -52,15 +52,15 @@ def csv_to_dataframe(path_to_csv):
     res = pd.read_csv(path_to_csv)
     return(res)
 
-def datasets(data):
+def example_datasets(data):
     if(data == 'iris'):
         res = csv_to_dataframe(**{
             "path_to_csv": DATA_PATH + "iris.csv"
         })
     return(res)
 
-def images(target_directory, type):
-    if(type == 'defect'):
+def example_images(target_directory, type):
+    if(type == 'defects'):
         if(os.path.exists(target_directory)):
             copy_files(**{
                 "file_paths" : [IMG_PATH + 'template.jpg', IMG_PATH + 'test.jpg'],
@@ -75,7 +75,7 @@ def images(target_directory, type):
                 "file_paths": [IMG_PATH + 'template.jpg', IMG_PATH + 'test.jpg'],
                 "target_directory": target_directory
             })
-        return(True)
+        return('Images copied to your target folder.')
 
 def encode_and_bind(original_dataframe, feature_to_encode):
     dummies = pd.get_dummies(original_dataframe[[feature_to_encode]])
