@@ -95,8 +95,8 @@ def example_images(target_directory, type):
             })
         return('Images copied to your target directory.')
 
-def encode_and_bind(original_dataframe, features_to_encode):
-    dummies = pd.get_dummies(original_dataframe[[features_to_encode]])
+def encode_and_bind(original_dataframe, feature_to_encode):
+    dummies = pd.get_dummies(original_dataframe[[feature_to_encode]])
     res = pd.concat([original_dataframe, dummies], axis=1)
     res = res.drop([feature_to_encode], axis=1)
     return(res)
