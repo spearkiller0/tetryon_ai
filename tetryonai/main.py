@@ -51,7 +51,7 @@ def csv_to_dataframe(path_to_csv):
 def datasets(data):
     if(data == 'iris'):
         res = csv_to_dataframe(**{
-            "path_to_csv" : "tetryonai/data/iris.csv"
+            "path_to_csv" : "data/iris.csv"
         })
     return(res)
 
