@@ -63,7 +63,7 @@ def images(target_directory, type):
     if(type == 'defect'):
         if(os.path.exists(target_directory)):
             copy_files(**{
-                "file_paths" : [IMG_PATH + 'template.jpg', IMG_PATH + 'test,jpg'],
+                "file_paths" : [IMG_PATH + 'template.jpg', IMG_PATH + 'test.jpg'],
                 "target_directory" : target_directory
             })
         else:
@@ -72,7 +72,7 @@ def images(target_directory, type):
                 "directory_path": target_directory
             })
             copy_files(**{
-                "file_paths": [IMG_PATH + 'template.jpg', IMG_PATH + 'test,jpg'],
+                "file_paths": [IMG_PATH + 'template.jpg', IMG_PATH + 'test.jpg'],
                 "target_directory": target_directory
             })
         return(True)
