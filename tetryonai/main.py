@@ -211,7 +211,7 @@ def split_data(original_dataframe, target_feature, split_fraction):
     headers_tr.remove(target_feature)
     train_y = remove_features(**{
         "original_dataframe": train,
-        "features_to_remove": [headers_tr]
+        "features_to_remove": headers_tr
     })
     test_X = remove_features(**{
         "original_dataframe": test,
@@ -221,7 +221,7 @@ def split_data(original_dataframe, target_feature, split_fraction):
     headers_te.remove(target_feature)
     test_y = remove_features(**{
         "original_dataframe": test,
-        "features_to_remove": [headers_te]
+        "features_to_remove": headers_te
     })
     datasets['train'] = train
     datasets['test'] = test
