@@ -200,18 +200,8 @@ def zip_files_in_directory(directory, zip_filename):
 ## model training
 
 def split_data(original_dataframe, target_feature, split_percentage):
-    X = remove_features(**{
-        "original_dataframe": original_dataframe,
-        "features_to_remove": [target_feature]
-    })
-    df_headers = list(original_dataframe.columns)
-    df_headers.remove(target_feature)
-    y = remove_features(**{
-        "original_dataframe": original_dataframe,
-        "features_to_remove": df_headers
-    })
     use_test_size = 1 - split_percentage
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = use_test_size, random_state = 42)
+    X_train, X_test, y_train, y_test = train_test_split(original_dataframe, test_size=use_test_size)
     datasets = {}
     datasets['x_train'] = X_train
     datasets['y_train'] = y_train
