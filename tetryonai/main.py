@@ -34,7 +34,7 @@ import requests
 from bs4 import BeautifulSoup
 import cv2
 from sklearn import linear_model
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 
 DATA_PATH = pkg_resources.resource_filename('tetryonai', 'data/')
 IMG_PATH = pkg_resources.resource_filename('tetryonai', 'img/')
