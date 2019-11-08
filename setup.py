@@ -13,7 +13,8 @@ setup(name='tetryonai',
             'pandas',
             'requests',
             'bs4',
-            'opencv-python'
+            'opencv-python',
+            'sklearn'
       ],
       test_suite='nose.collector',
       tests_require=['nose'],

@@ -33,6 +33,7 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import cv2
+from sklearn import linear_model
 
 DATA_PATH = pkg_resources.resource_filename('tetryonai', 'data/')
 IMG_PATH = pkg_resources.resource_filename('tetryonai', 'img/')
@@ -192,3 +193,18 @@ def zip_files_in_directory(directory, zip_filename):
         for filename in files:
             zf.write(os.path.join(dirname, filename))
     zf.close()
+
+# MACHINE LEARNING
+
+## MODEL TRAINING
+
+def linear_regression(data):
+    reg = linear_model.LinearRegression()
+    reg.fit(data)
+    model = LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
+    return(model)
+
+
+
+
+
