@@ -61,7 +61,7 @@ def datasets(data):
 
 def images(target_directory, type):
     if(type == 'defect'):
-        if(os.path.exists(target_directory):
+        if(os.path.exists(target_directory)):
             copy_file(**{
                 "file_paths" : [IMG_PATH + 'template.jpg', IMG_PATH + 'test,jpg'],
                 "target_directory" : target_directory
