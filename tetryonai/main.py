@@ -232,10 +232,6 @@ def split_data(original_dataframe, target_feature, split_fraction):
     return(datasets)
 
 def linear_regression(train_set, test_set, target_feature):
-    X_train = train_set[]
-    y_train =
-    X_test =
-    y_test =
     reg = linear_model.LinearRegression()
     reg.fit(data)
     model = LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
