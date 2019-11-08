@@ -24,6 +24,7 @@ import os
 import sys
 import pkg_resources
 import re
+import shutil
 import json
 import glob
 import zipfile
@@ -34,7 +35,7 @@ from bs4 import BeautifulSoup
 import cv2
 
 DATA_PATH = pkg_resources.resource_filename('tetryonai', 'data/')
-
+IMG_PATH = pkg_resources.resource_filename('tetryonai', 'img/')
 
 def check_dependencies(lib_list):
     for lib in lib_list:
@@ -58,10 +59,22 @@ def datasets(data):
         })
     return(res)
 
-def images(directory_name, image_name, type):
+def images(target_directory, type):
     if(type == 'defect'):
-        # create directory is none exists
-        # copy example image  to new/existing directory
+        if(os.path.exists(target_directory):
+            copy_file(**{
+                "file_paths" : [IMG_PATH + 'template.jpg', IMG_PATH + 'test,jpg'],
+                "target_directory" : target_directory
+            })
+        else:
+            directory(**{
+                "choice": "make",
+                "directory_path": target_directory
+            })
+            copy_file(**{
+                "file_paths": [IMG_PATH + 'template.jpg', IMG_PATH + 'test,jpg'],
+                "target_directory": target_directory
+            })
         return(True)
 
 def encode_and_bind(original_dataframe, feature_to_encode):
@@ -101,6 +114,10 @@ def directory(choice, directory_path):
         os.mkdir(directory_path)
     if (choice == 'remove'):
         os.rmdir(directory_path)
+
+def copy_files(file_paths, target_directory):
+    for file in file_paths:
+        shutil.copy(file, target_directory)
 
 def subtract_images(image_path_1, image_path_2, write_path):
     image1 = cv2.imread(image_path_1)
