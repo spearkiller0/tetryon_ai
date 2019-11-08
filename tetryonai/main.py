@@ -231,11 +231,14 @@ def split_data(original_dataframe, target_feature, split_fraction):
     datasets['test_y'] = test_y
     return(datasets)
 
-def linear_regression(train_set, test_set, target_feature):
-    reg = linear_model.LinearRegression()
-    reg.fit(data)
-    model = LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
-    return(model)
+def linear_regression(train_X, train_y, test_X):
+    regr = linear_model.LinearRegression()
+    regr.fit(train_X, train_y)
+    prediction = regr.predict(test_X)
+    print('Coefficients: \n', regr.coef_)
+    print("Mean squared error: %.2f" % mean_squared_error(test_y, prediction))
+    print('Variance score: %.2f' % r2_score(test_y, prediction))
+    return(prediction)
 
 
 
