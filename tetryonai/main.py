@@ -235,7 +235,7 @@ def linear_regression(train_X, train_y, test_X, test_y):
     predictions = regr.predict(test_X)
     model_results['coefficients'] = regr.coef_
     model_results['mean_squared_error'] = mean_squared_error(test_y, predictions)
-    model_results['variance score'] = r2_score(test_y, predictions))
+    model_results['variance score'] = r2_score(test_y, predictions)
     model_results['predictions'] = predictions
     return(model_results)
 
