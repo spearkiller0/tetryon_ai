@@ -223,7 +223,7 @@ def remove_nas(original_dataframe, type, threshold, columns):
         print("Removing all rows where all elements are missing.")
         res = original_dataframe.dropna(how='all')
     if(type == 'threshold'):
-        print("Keeping only rows with at least " + threshold + " non-NA values.")
+        print("Keeping only rows with at least " + str(threshold) + " non-NA values.")
         res = original_dataframe.dropna(thresh=threshold)
     if(type == 'by_column'):
         print("Removing all columns that are specified.")
