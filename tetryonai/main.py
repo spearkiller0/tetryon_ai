@@ -215,8 +215,19 @@ def zip_files_in_directory(directory, zip_filename):
             zf.write(os.path.join(dirname, filename))
     zf.close()
 
-def remove_nas(dataframe):
-    res = dataframe.dropna
+def remove_nas(original_dataframe, type, threshold, columns):
+    if(type == 'all_columns'):
+        print("Removing all columns where at least one element is missing.")
+        res = original_dataframe.dropna(axis='columns')
+    if(type == 'all_rows'):
+        print("Removing all rows where all elements are missing.")
+        res = original_dataframe.dropna(how='all')
+    if(type == 'threshold'):
+        print("Keeping only rows with at least " + threshold + " non-NA values.")
+        res = original_dataframe.dropna(thresh=threshold)
+    if(type == 'by_column'):
+        print("Removing all columns that are specified.")
+        res = original_dataframe.dropna(subset=columns)
     return(res)
 
 # MACHINE LEARNING
