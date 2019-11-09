@@ -73,6 +73,8 @@ def example_datasets(target_directory, type):
         use_data = 'boston_housing.csv'
     if (type == 'people'):
         use_data = 'people.csv'
+    if (type == 'cardio'):
+        use_data = 'cardio.csv'
     if (os.path.exists(target_directory)):
         copy_files(**{
             "file_paths": [DATA_PATH + use_data],
