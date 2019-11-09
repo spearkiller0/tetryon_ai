@@ -56,6 +56,16 @@ def csv_to_dataframe(path_to_csv):
     res = pd.read_csv(path_to_csv)
     return(res)
 
+def get_dataset_description(type):
+    if(type == 'iris'):
+        res = "The data set contains 3 classes of 50 instances each, where each class refers to a type of iris plant."
+    if(type == 'boston'):
+        res = "Contains information about different houses in Boston."
+    if(type == 'people'):
+        res = "Demographic data collected on individuals."
+    if(type == 'cardio'):
+        res = "The dataset consists of measurements of fetal heart rate (FHR) and uterine contraction (UC) features on cardiotocograms classified by expert obstetricians."
+
 def example_datasets(target_directory, type):
     if (type == 'iris'):
         use_data = 'iris.csv'
@@ -202,6 +212,10 @@ def zip_files_in_directory(directory, zip_filename):
         for filename in files:
             zf.write(os.path.join(dirname, filename))
     zf.close()
+
+def remove_nas(dataframe):
+    res = dataframe.dropna
+    return(res)
 
 # MACHINE LEARNING
 
