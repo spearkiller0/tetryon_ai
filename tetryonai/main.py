@@ -35,7 +35,7 @@ from bs4 import BeautifulSoup
 import cv2
 from sklearn.model_selection import train_test_split
 from sklearn import linear_model
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import mean_squared_error, r2_score, accuracy_score, precision_score, recall_score, roc_curve, roc_auc_score
 from sklearn.linear_model import LogisticRegression
 
 DATA_PATH = pkg_resources.resource_filename('tetryonai', 'data/')
@@ -251,8 +251,17 @@ def linear_regression(train_X, train_y, test_X, test_y):
     return(model_results)
 
 
-#def logistic_regression(train_X, train_y, test_X, test_y):
-
-
-
-
+def logistic_regression(train_X, train_y, test_X, test_y):
+    logreg = LogisticRegression()
+    logreg.fit(train_X, train_y)
+    model_results = {}
+    predictions = logreg.predict(test_X)
+    cnf_matrix = metrics.confusion_matrix(test_y, predictions)
+    model_results['confusion_matrix'] = cnf_matrix
+    model_results['accuracy'] = accuracy_score(test_y, predictions)
+    model_results['precision'] = precision_score(test_y, predictions)
+    model_results['recall'] = recall_score(test_y, predictions)
+    y_pred_prob = logreg.predict_proba(test_X)[::, 1]
+    model_results['roc'] = roc_curve(test_y, y_pred_prob)
+    model_results['auc'] = roc_auc_score(test_y, y_pred_prob)
+    return(model_results)
