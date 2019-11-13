@@ -145,6 +145,14 @@ def scrape_website(url, element):
     res = soup.findAll(element)
     return(res)
 
+def get_everything_before(string, character):
+    res = string.split(character)[0]
+    print(res)
+
+def get_everything_after(string, character):
+    res = string.split(character, 1)[1]
+    print(res)
+
 def get_everything_between(string, first_character, second_character):
     res = re.search(first_character + "(.+?)" + second_character, string).group(0).replace(first_character, '').replace(second_character, '')
     print(res)
@@ -226,8 +234,12 @@ def remove_nas(original_dataframe, type, threshold, columns):
         print("Keeping only rows with at least " + str(threshold) + " non-NA values.")
         res = original_dataframe.dropna(thresh=threshold)
     if(type == 'by_column'):
-        print("Removing all columns that are specified.")
+        print("Removing all specified columns that contain missing values.")
         res = original_dataframe.dropna(subset=columns)
+    return(res)
+
+def convert_to_numbers(original_dataframe, column):
+    res = pd.to_numeric(original_dataframe[column], errors='coerce')
     return(res)
 
 # MACHINE LEARNING
