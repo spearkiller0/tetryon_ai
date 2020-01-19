@@ -9,7 +9,6 @@ setup(name='tetryonai',
       license='MIT',
       packages=['tetryonai'],
       install_requires=[
-            'os',
             'sys',
             'pkg_resources',
             're',
