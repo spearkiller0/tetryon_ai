@@ -158,9 +158,9 @@ def get_everything_between(string, first_character, second_character):
     print(res)
 
 def directory(choice, directory_path, force):
-    if(choice == 'make'):
+    if choice == 'make':
         os.mkdir(directory_path)
-    if (choice == 'remove'):
+    if choice == 'remove':
         if force:
             shutil.rmtree(directory_path)
         else:
