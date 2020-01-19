@@ -157,11 +157,14 @@ def get_everything_between(string, first_character, second_character):
     res = re.search(first_character + "(.+?)" + second_character, string).group(0).replace(first_character, '').replace(second_character, '')
     print(res)
 
-def directory(choice, directory_path):
+def directory(choice, directory_path, force):
     if(choice == 'make'):
         os.mkdir(directory_path)
     if (choice == 'remove'):
-        os.rmdir(directory_path)
+        if(force):
+            shutil.rmtree(directory_path)
+        else:
+            os.rmdir(directory_path)
 
 def copy_files(file_paths, target_directory):
     for file in file_paths:
