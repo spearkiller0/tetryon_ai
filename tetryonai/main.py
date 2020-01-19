@@ -161,7 +161,7 @@ def directory(choice, directory_path, force):
     if(choice == 'make'):
         os.mkdir(directory_path)
     if (choice == 'remove'):
-        if(force):
+        if force:
             shutil.rmtree(directory_path)
         else:
             os.rmdir(directory_path)
