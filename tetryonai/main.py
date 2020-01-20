@@ -213,6 +213,7 @@ def extract_contours_from_image(image_path, write_path, hsv_lower, hsv_upper):
         ROI = original[y - offset:y + h + offset, x - offset:x + w + offset]
         cv2.imwrite(write_path + 'contour_{}.png'.format(ROI_number), ROI)
         ROI_number += 1
+    cnts = 0
 
 def write_dict_as_json(write_path, pass_dict):
     with open(write_path, 'w') as outfile:
