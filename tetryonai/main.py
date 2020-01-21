@@ -170,6 +170,10 @@ def copy_files(file_paths, target_directory):
     for file in file_paths:
         shutil.copy(file, target_directory)
 
+def move_files(file_paths, target_directory):
+    for file in file_paths:
+        shutil.move(file, target_directory)
+
 def subtract_images(image_path_1, image_path_2, write_path):
     image1 = cv2.imread(image_path_1)
     image2 = cv2.imread(image_path_2)
@@ -214,7 +218,7 @@ def extract_contours_from_image(image_path, write_path, hsv_lower, hsv_upper):
         try:
             cv2.imwrite(write_path + 'contour_{}.png'.format(ROI_number), ROI)
         except:
-            print("skipping image" + image_path)
+            print("skipping image " + image_path)
         ROI_number += 1
 
 def write_dict_as_json(write_path, pass_dict):
