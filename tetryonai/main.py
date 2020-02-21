@@ -271,6 +271,27 @@ def create_distribution(type, pass_size, pass_location, pass_scale):
         res = bernoulli.rvs(size=pass_size, p=0.6)
     return(res)
 
+def detect_distribution(data):
+    res = {}
+    dist_names = ["uniform", "norm", "gamma", "expon", "exponweib", "weibull_max", "weibull_min", "pareto", "genextreme"]
+    dist_results = []
+    params = {}
+    for dist_name in dist_names:
+        dist = getattr(st, dist_name)
+        param = dist.fit(data)
+        params[dist_name] = param
+        # Applying the Kolmogorov-Smirnov test
+        D, p = st.kstest(data, dist_name, args=param)
+        print("p value for "+dist_name+" = "+str(p))
+        dist_results.append((dist_name, p))
+    # select the best fitted distribution
+    best_dist, best_p = (max(dist_results, key=lambda item: item[1]))
+    # store the name of the best fit and its p value
+    res["best_fit_distribution"] = str(best_dist)
+    res["best fit p value"] = str(best_p)
+    res["best fit parameters"] = str(params[best_dist])
+    return(res)
+
 # MODEL TRAINING
 
 ## model training
