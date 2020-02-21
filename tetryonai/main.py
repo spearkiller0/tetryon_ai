@@ -33,7 +33,7 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import cv2
-from scipy.stats import uniform, norm, gamma, expon, poisson, binom, bernoulli
+from scipy.stats import uniform, norm, gamma, expon, poisson, binom, bernoulli, st
 from sklearn.model_selection import train_test_split
 from sklearn import linear_model
 from sklearn.metrics import mean_squared_error, r2_score, accuracy_score, precision_score, recall_score, roc_curve, roc_auc_score, confusion_matrix
