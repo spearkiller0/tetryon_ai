@@ -33,6 +33,7 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import cv2
+import scipy.stats as st
 from scipy.stats import uniform, norm, gamma, expon, poisson, binom, bernoulli
 from sklearn.model_selection import train_test_split
 from sklearn import linear_model
@@ -281,7 +282,7 @@ def detect_distribution(data):
         param = dist.fit(data)
         params[dist_name] = param
         # Applying the Kolmogorov-Smirnov test
-        D, p = scipy.stats.kstest(data, dist_name, args=param)
+        D, p = st.kstest(data, dist_name, args=param)
         print("p value for "+dist_name+" = "+str(p))
         dist_results.append((dist_name, p))
     # select the best fitted distribution
