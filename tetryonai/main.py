@@ -33,6 +33,7 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import cv2
+from scipy.stats import uniform, norm, gamma, expon, poisson, binom, bernoulli
 from sklearn.model_selection import train_test_split
 from sklearn import linear_model
 from sklearn.metrics import mean_squared_error, r2_score, accuracy_score, precision_score, recall_score, roc_curve, roc_auc_score, confusion_matrix
@@ -252,7 +253,25 @@ def convert_to_numbers(original_dataframe, column):
     res = pd.to_numeric(original_dataframe[column], errors='coerce')
     return(res)
 
-# MACHINE LEARNING
+# DATA PROFILING
+def create_distribution(type, pass_size, pass_location, pass_scale):
+    if(type == 'uniform'):
+        res = uniform.rvs(size=pass_size, loc=pass_location, scale=pass_scale)
+    if (type == 'normal'):
+        res = norm.rvs(size=pass_size, loc=pass_location, scale=pass_scale)
+    if (type == 'gamma'):
+        res = gamma.rvs(a=5, size=pass_size)
+    if (type == 'exponential'):
+        res = expon.rvs(scale=pass_scale, loc=pass_location, size=pass_size)
+    if (type == 'poisson'):
+        res = poisson.rvs(mu=3, size=pass_size)
+    if (type == 'binomial'):
+        res = binom.rvs(n=10, p=0.8, size=pass_size)
+    if (type == 'bernoulli'):
+        res = bernoulli.rvs(size=pass_size, p=0.6)
+    return(res)
+
+# MODEL TRAINING
 
 ## model training
 
