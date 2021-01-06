@@ -212,16 +212,21 @@ def extract_contours_from_image(image_path, write_path, hsv_lower, hsv_upper):
     cnts = cv2.findContours(close, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     offset = 20
+    temp_image = None
     ROI_number = 0
     for c in cnts:
         x, y, w, h = cv2.boundingRect(c)
+        
+        temp_image = image.copy()
         cv2.rectangle(image, (x - offset, y - offset), (x + w + offset, y + h + offset), (36, 255, 12), 2)
         ROI = original[y - offset:y + h + offset, x - offset:x + w + offset]
         try:
             cv2.imwrite(write_path + 'contour_{}.png'.format(ROI_number), ROI)
+            cv2.imwrite(write_path + 'big_contour_{}.png'.format(ROI_number), image)
         except:
             print("skipping image " + image_path)
         ROI_number += 1
+        image = temp_image.copy()
 
 def write_dict_as_json(write_path, pass_dict):
     with open(write_path, 'w') as outfile:
